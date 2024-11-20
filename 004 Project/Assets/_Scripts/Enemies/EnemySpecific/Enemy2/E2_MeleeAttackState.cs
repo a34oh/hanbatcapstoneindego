@@ -6,6 +6,9 @@ public class E2_MeleeAttackState : MeleeAttackState
 {
     private Enemy2 enemy;
 
+    private static int MaxAttackCount = 2;
+    public static int CurrentAttackCount = 0;
+
     private Combat Combat { get => combat ?? core.GetCoreComponent(ref combat); }
 
     private Combat combat;
@@ -21,6 +24,7 @@ public class E2_MeleeAttackState : MeleeAttackState
 
     public override void Enter()
     {
+        CurrentAttackCount++;
         base.Enter();
         if (!Movement.CanSetVelocity)
             Combat.ResetKnockback();
@@ -44,10 +48,16 @@ public class E2_MeleeAttackState : MeleeAttackState
 
         if (isAnimationFinished)
         {
-            if (isPlayerInMinAgroRange)
+            if (CurrentAttackCount == MaxAttackCount)
+            {
+                stateMachine.ChangeState(enemy.dodgeState);
+                CurrentAttackCount = 0;
+            }
+            else if (isPlayerInMinAgroRange)
             {
                 stateMachine.ChangeState(enemy.playerDetectedState);
-            }else if (!isPlayerInMinAgroRange)
+            }
+            else if (!isPlayerInMinAgroRange)
             {
                 stateMachine.ChangeState(enemy.lookForPlayerState);
             }

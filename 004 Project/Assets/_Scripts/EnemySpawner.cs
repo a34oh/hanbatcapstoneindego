@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class EnemySpawner : MonoBehaviour
@@ -73,73 +74,6 @@ public class EnemySpawner : MonoBehaviour
         
     }
 
-    void Update()
-    {
-     //   HandleMonsterSelection();
-    //    HandleElementSelection();
-     //   HandleElementLevelSelection();
-      //  if (Input.GetKeyDown(KeyCode.B))
-  //      {
-  //          SpawnSelectedMonster();
-  //      }
-    }
-
-    private void HandleMonsterSelection()
-    {
-        if (Input.GetKeyDown(KeyCode.Alpha5))
-        {
-            SelectMonster(0);  // Enemy1
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha6))
-        {
-            SelectMonster(1);  // Goblin
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha7))
-        {
-            SelectMonster(2);  // FlyingEye
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha8))
-        {
-            SelectMonster(3);  // Enemy2
-        }
-    }
-
-    private void HandleElementSelection()
-    {
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            SelectElement(Element.Fire);
-        }
-        else if (Input.GetKeyDown(KeyCode.J))
-        {
-            SelectElement(Element.Ice);
-        }
-        else if (Input.GetKeyDown(KeyCode.K))
-        {
-            SelectElement(Element.Land);
-        }
-        else if (Input.GetKeyDown(KeyCode.L))
-        {
-            SelectElement(Element.Light);
-        }
-    }
-
-    private void HandleElementLevelSelection()
-    {
-        if (Input.GetKeyDown(KeyCode.U))
-        {
-            SelectElementLevel(1);
-        }
-        else if (Input.GetKeyDown(KeyCode.I))
-        {
-            SelectElementLevel(2);
-        }
-        else if (Input.GetKeyDown(KeyCode.O))
-        {
-            SelectElementLevel(3);
-        }
-    }
-
     private void SelectMonster(int index)
     {
         selectedMonsterIndex = index;
@@ -152,6 +86,7 @@ public class EnemySpawner : MonoBehaviour
         if (index >= 0 && index < monsterButtons.Length)
         {
             monsterButtons[index].image.color = activeColor;  // 선택된 버튼을 녹색으로 변경
+            EventSystem.current.SetSelectedGameObject(null);
         }
     }
 
@@ -170,6 +105,7 @@ public class EnemySpawner : MonoBehaviour
         if (elementIndex >= 0 && elementIndex < elementButtons.Length)
         {
             elementButtons[elementIndex].image.color = activeColor;
+            EventSystem.current.SetSelectedGameObject(null);
         }
         else
         {
@@ -186,6 +122,7 @@ public class EnemySpawner : MonoBehaviour
             btn.image.color = inactiveColor;
         }
         elementLevelButtons[level - 1].image.color = activeColor;
+        EventSystem.current.SetSelectedGameObject(null);
     }
 
     private void SpawnSelectedMonster()
@@ -201,7 +138,7 @@ public class EnemySpawner : MonoBehaviour
             Debug.Log("속성이 선택되지 않았습니다.");
             return;
         }
-
+        EventSystem.current.SetSelectedGameObject(null);
         GameObject monsterPrefab = monsterPrefabs[selectedMonsterIndex];
         GameObject monsterInstance = Instantiate(monsterPrefab, transform.position, Quaternion.identity);
 
@@ -217,6 +154,7 @@ public class EnemySpawner : MonoBehaviour
             Debug.LogError("EnemyStats component not found on the monster prefab.");
         }
         selectedMonsterIndex = -1;
+
     }
 
 

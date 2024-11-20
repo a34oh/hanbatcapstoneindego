@@ -24,18 +24,15 @@ public class PlayerManager : MonoBehaviour
             {
                 // 지정된 위치에서 Player 생성
                 Player = GameManager.Resource.Instantiate("Player", position.Value);
-                Debug.Log("Player 생성 위치: " + position.Value);
             }
             else
             {
                 // 프리팹에 지정된 기본 위치에서 Player 생성
                 Player = GameManager.Resource.Instantiate("Player");
-                Debug.Log("Player 생성 (프리팹 기본 위치)");
             }
         }
         if (position.HasValue)
         {
-            Debug.Log(" position.Value : " + position.Value);
             Player.transform.position = position.Value;
         }
 

@@ -19,6 +19,7 @@ public class E2_DodgeState : DodgeState
     public override void Enter()
     {
         base.Enter();
+        E2_MeleeAttackState.CurrentAttackCount = 0;
     }
 
     public override void Exit()
