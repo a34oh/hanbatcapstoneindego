@@ -2,19 +2,17 @@ using UnityEngine;
 
 public class PlayerStats : CharacterStats<PlayerStatsData>
 {
-    [SerializeField] private int level;
-    [SerializeField] private int MaxExp;
-    private int currentExp;
+    [SerializeField] public int level;
+    [SerializeField] public int MaxExp;
+    public int currentExp;
 
-    public static bool savePlayerData = false;
     public static Element currentElement;
     public static int currentLevel;
     public static float currentAddAttackDamage;
     public static int currentHp;
-    public static int exp;
-    public static int currentGoldPoint = 100;
+    public static int currentGoldPoint;
 
-    public int Level
+    public int Level 
     {
         get => level;
         set
@@ -28,17 +26,14 @@ public class PlayerStats : CharacterStats<PlayerStatsData>
         base.Awake();
     }
 
-    protected override void SetStatsData(PlayerStatsData stats, bool isSave)
+    protected override void SetStatsData(PlayerStatsData stats)
     {
-        base.SetStatsData(stats, isSave);
+        base.SetStatsData(stats);
         MaxExp = stats.MaxExp;
     }
     private void OnEnable()
     {
-        if (savePlayerData)
-            InitializeLoadPlayerStats(); 
-        else
-            InitializePlayerStats();
+        InitializePlayerStats();
 
     }
 
@@ -48,33 +43,12 @@ public class PlayerStats : CharacterStats<PlayerStatsData>
         {
             transform.root.GetComponent<CharacterAudio>().PlayDeathSound();
         }
-        else
-        {
-            currentElement = Element;
-            currentLevel = level;
-            currentAddAttackDamage = addAttackDamage;
-            currentHp = curHp;
-            exp = currentExp;
-        }
     }
     private void Start()
     {
-        if(!savePlayerData)
-            ChangeElement(Element.Fire, fireLevel);
-        else
-            ChangeElement(currentElement, fireLevel);
+        ChangeElement(Element.Fire, fireLevel);
     }
-    private void InitializeLoadPlayerStats()
-    {
-        id = 1; 
-        level = currentLevel;
-        currentExp = exp;
-        Element = currentElement;
-        curHp = currentHp;
-        addAttackDamage = currentAddAttackDamage;
-        SetStat();
 
-    }
     private void InitializePlayerStats()
     {
         // ���⼭ id�� level�� �ʱ�ȭ
@@ -93,7 +67,7 @@ public class PlayerStats : CharacterStats<PlayerStatsData>
             var stats = kvp.Value;
             if (stats.id == id && stats.level == level)
             {
-                SetStatsData(stats, savePlayerData);
+                SetStatsData(stats);
                 return;
             }
         }

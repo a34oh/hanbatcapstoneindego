@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System;
+using UnityEngine.EventSystems;
 public class PlayerInputHandler : MonoBehaviour
 {
     private PlayerInput playerInput;
@@ -19,7 +20,7 @@ public class PlayerInputHandler : MonoBehaviour
 
     public bool ShieldInput { get; private set; }
     public bool ShieldHoldInput { get; private set; }
-    
+
 
     public bool SkillInput { get; private set; }
     public bool SkillHoldInput { get; private set; }
@@ -55,16 +56,24 @@ public class PlayerInputHandler : MonoBehaviour
 
     public void OnPrimaryAttackInput(InputAction.CallbackContext context)
     {
-        if(!InventoryUI.instance.activeInventory)
+        // UI í´ë¦­ ì¤‘ì´ë©´ ê³µê²© ë¬´ì‹œ
+        if (EventSystem.current.IsPointerOverGameObject())
+            return;
+
+        if (!InventoryUI.instance.activeInventory)
         {
             if (context.started)
                 AttackInputs[(int)CombatInputs.primary] = true;
         }
         if (context.canceled)
-                AttackInputs[(int)CombatInputs.primary] = false;
+            AttackInputs[(int)CombatInputs.primary] = false;
     }
     public void OnSecondaryAttackInput(InputAction.CallbackContext context)
     {
+        // UI í´ë¦­ ì¤‘ì´ë©´ ê³µê²© ë¬´ì‹œ
+        if (EventSystem.current.IsPointerOverGameObject())
+            return;
+
         if (context.started)
             AttackInputs[(int)CombatInputs.secondary] = true;
 
@@ -138,8 +147,8 @@ public class PlayerInputHandler : MonoBehaviour
             ShieldInput = true;
             ShieldHoldInputStartTime = Time.time;
         }
-        
-        if(context.canceled)
+
+        if (context.canceled)
         {
             isParrySuccessful = false;
             ShieldInput = false;
@@ -148,7 +157,7 @@ public class PlayerInputHandler : MonoBehaviour
     }
     private void CheckShieldInputHolding()
     {
-        // ÆÐ¸µ ¼º°ø ½Ã Ãß°¡ ½ÇÇà ¹æÁö
+        // ï¿½Ð¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ß°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         if (isParrySuccessful) return;
 
         if (ShieldInput && Time.time >= ShieldHoldInputStartTime + inputHoldTime)
@@ -158,7 +167,7 @@ public class PlayerInputHandler : MonoBehaviour
     }
     public void OnParrySuccess()
     {
-        // ÆÐ¸µ ¼º°ø ½Ã ÇÃ·¡±× ¼³Á¤ ¹× ÀÔ·Â ÃÊ±âÈ­
+        // ï¿½Ð¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ô·ï¿½ ï¿½Ê±ï¿½È­
         isParrySuccessful = true;
         ShieldInput = false;
         ShieldHoldInput = false;
@@ -166,12 +175,12 @@ public class PlayerInputHandler : MonoBehaviour
 
     public void OnSkillInput(InputAction.CallbackContext context)
     {
-        if(context.started)
+        if (context.started)
         {
             SkillInput = true;
             SkillHoldInputStartTime = Time.time;
         }
-        if(context.canceled)
+        if (context.canceled)
         {
             SkillInput = false;
             SkillHoldInput = false;
@@ -187,7 +196,7 @@ public class PlayerInputHandler : MonoBehaviour
 
     public void OnSkillChangeInput(InputAction.CallbackContext context)
     {
-        if(context.started)
+        if (context.started)
         {
             OnSkillChangeInputAction?.Invoke();
         }

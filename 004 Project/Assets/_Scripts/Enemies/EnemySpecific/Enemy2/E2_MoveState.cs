@@ -34,7 +34,7 @@ public class E2_MoveState : MoveState
         {
             stateMachine.ChangeState(enemy.playerDetectedState);
         }
-        else if (enemy.lastKnownPlayerPosition != null && (!isDetectingWall || isDetectingLedge))
+        else if (enemy.lastKnownPlayerPosition != null)
         {
             float direction = Mathf.Sign(enemy.lastKnownPlayerPosition.Value.x - enemy.transform.position.x);
             Movement?.SetVelocityX(stateData.movementSpeed * direction * enemyStats.MoveSpeed);

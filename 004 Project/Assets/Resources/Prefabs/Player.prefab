@@ -54,14 +54,6 @@ MonoBehaviour:
   defense: 0
   moveSpeed: 0
   element: 0
-  hpBarRectTransform: {fileID: 0}
-  healthBarImage: {fileID: 0}
-  healthText: {fileID: 0}
-  elementImageUI: {fileID: 0}
-  fireSprite: {fileID: 0}
-  iceSprite: {fileID: 0}
-  landSprite: {fileID: 0}
-  lightSprite: {fileID: 0}
   level: 0
   MaxExp: 0
 --- !u!1 &77565095237292720
@@ -923,6 +915,7 @@ GameObject:
   - component: {fileID: 1532410185546229327}
   - component: {fileID: 6697182657168092921}
   - component: {fileID: 5459385347238051245}
+  - component: {fileID: 7718566268127020444}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -1405,6 +1398,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4c2671ed2e76f1f4ead367c1105081dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7718566268127020444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3635248461550499727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 747c1ee5e43a34e018b672036eb9d532, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &4066468657423621773
