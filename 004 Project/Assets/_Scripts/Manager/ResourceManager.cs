@@ -29,6 +29,19 @@ public class ResourceManager
         go.name = original.name;
         return go;
     }
+
+    public GameObject Instantiate(string path, Vector3 position, Transform parent = null)
+    {
+        GameObject original = Load<GameObject>($"Prefabs/{path}");
+        if (original == null)
+        {
+            Debug.Log($"Failed to load prefab : {path}");
+            return null;
+        }
+        GameObject go = Object.Instantiate(original, position, Quaternion.identity, parent);
+        go.name = original.name;
+        return go;
+    }
     public GameObject Instantiate(GameObject prefab, Vector3 position,Quaternion rotation, Transform parent = null)
     {
         GameObject original = prefab;

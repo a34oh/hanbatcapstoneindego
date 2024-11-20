@@ -75,13 +75,14 @@ public class GameManager : MonoBehaviour
         
     }
 
-    public void CreatePlayerManager()
+    public void CreatePlayerManager(Vector3? position = null)
     {
         if (PlayerManager == null)
         {
             GameObject go = new GameObject("PlayerManager") { name = "@PlayerManager"};
+
             player = go.AddComponent<PlayerManager>();
-            PlayerManager.Initialize();
+            PlayerManager.Initialize(position);
         }
     }
     void TogglePause()

@@ -8,19 +8,36 @@ public class PlayerManager : MonoBehaviour
     public PlayerDataCollect PlayerDataCollect { get; private set; }
     public PlayerDataAnalyze DataAnalyze { get; private set; }
 
-    public void Initialize()
+    public void Initialize(Vector3? position = null)
     {
-        CreatePlayer();
+        CreatePlayer(position);
         SetSkills();
     }
 
-    private void CreatePlayer()
+    private void CreatePlayer(Vector3? position = null)
     {
         Player = GameObject.Find("Player");
 
         if (Player == null)
-            Player = GameManager.Resource.Instantiate("Player");
-
+        {
+            if (position.HasValue)
+            {
+                // 지정된 위치에서 Player 생성
+                Player = GameManager.Resource.Instantiate("Player", position.Value);
+                Debug.Log("Player 생성 위치: " + position.Value);
+            }
+            else
+            {
+                // 프리팹에 지정된 기본 위치에서 Player 생성
+                Player = GameManager.Resource.Instantiate("Player");
+                Debug.Log("Player 생성 (프리팹 기본 위치)");
+            }
+        }
+        if (position.HasValue)
+        {
+            Debug.Log(" position.Value : " + position.Value);
+            Player.transform.position = position.Value;
+        }
 
         PlayerDataCollect = new PlayerDataCollect();
         DataAnalyze = new PlayerDataAnalyze();
