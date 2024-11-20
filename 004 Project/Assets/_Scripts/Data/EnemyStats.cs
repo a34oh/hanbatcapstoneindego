@@ -100,16 +100,16 @@ public class EnemyStats : CharacterStats<EnemyStatsData>
         // id�� �´� ������ �˻�
         if (GameManager.Data.EnemyStatsDict.TryGetValue(id, out var stats))
         {
-            SetStatsData(stats, false);
+            SetStatsData(stats);
         }
         else
         {
             Debug.LogError("Failed to load monster stats for id: " + id);
         }
     }
-    protected override void SetStatsData(EnemyStatsData stats, bool isSave = false)
+    protected override void SetStatsData(EnemyStatsData stats)
     {
-        base.SetStatsData(stats, isSave);
+        base.SetStatsData(stats);
         Exp = stats.Exp;
     }
 

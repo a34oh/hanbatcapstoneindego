@@ -1,53 +1,57 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 public class GameOverManager : MonoBehaviour
 {
-    public GameObject gameOverUI;
-    public Text youDiedText;
-    public Text pressAnyKeyText;
-    public Image backgroundOverlay;
-    private bool isGameOver = false;
+    public GameObject gameOverUI;          // Game Over UI (Canvas)
+    public GameObject youDiedText;         // "You Died" 텍스트
+    public GameObject pressAnyKeyText;     // "Press Any Key" 텍스트
+    public GameObject backgroundOverlay;   // 화면을 어둡게 하는 배경
+
+    private bool isGameOver = false;       // 게임 오버 상태
+    private bool canAcceptInput = false;   // 입력 허용 상태
+    public float inputDelay = 2f;          // 입력 지연 시간 (초)
 
     private void Update()
     {
-        if (isGameOver && Input.anyKeyDown)
+        if (isGameOver && canAcceptInput && Input.anyKeyDown)
         {
-
-            UnityEngine.SceneManagement.SceneManager.LoadScene("Title");
+            // "Title" 씬으로 전환
+            SceneManager.LoadScene("Title");
         }
     }
 
     public void TriggerGameOver()
+{
+    if (gameOverUI != null)
     {
-        if (gameOverUI != null)
+        gameOverUI.SetActive(true);
+
+        if (youDiedText != null) youDiedText.SetActive(true);
+        if (backgroundOverlay != null) backgroundOverlay.SetActive(true);
+
+        isGameOver = true;
+        canAcceptInput = false;
+
+        // 일정 시간 후 "Press Any Key" 표시 및 입력 허용
+        if (pressAnyKeyText != null)
         {
-            gameOverUI.SetActive(true);
-
-            if (youDiedText != null)
-            {
-                youDiedText.text = "You Died";
-                youDiedText.gameObject.SetActive(true);
-            }
-
-            if (pressAnyKeyText != null)
-            {
-                pressAnyKeyText.text = "Press Any Key";
-                pressAnyKeyText.gameObject.SetActive(true);
-            }
-
-            if (backgroundOverlay != null)
-            {
-                backgroundOverlay.color = new Color(0, 0, 0, 0.2f); // 검은색, 50% 투명도
-                backgroundOverlay.gameObject.SetActive(true);
-            }
-
-            isGameOver = true;
+            pressAnyKeyText.SetActive(false); // 초기에는 숨김
+            Invoke(nameof(ShowPressAnyKeyText), inputDelay);
         }
-        else
-        {
-            Debug.LogWarning("GameOverUI가 연결되지 않았습니다.");
-        }
+
+        Invoke(nameof(EnableInput), inputDelay);
+    }
+}private void ShowPressAnyKeyText()
+{
+    if (pressAnyKeyText != null)
+    {
+        pressAnyKeyText.SetActive(true); // 일정 시간 후 표시
+    }
+}
+
+    private void EnableInput()
+    {
+        canAcceptInput = true;            // 입력 허용
     }
 }
