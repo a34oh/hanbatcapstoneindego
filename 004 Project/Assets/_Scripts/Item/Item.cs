@@ -16,7 +16,6 @@ public class Item
     public string itemName;
     public Sprite itemImage;
     public List<Use_Effect> effects;
-    public int cost;
     public bool Use()
     {
         bool isused = false;
