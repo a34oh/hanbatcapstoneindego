@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour
         pauseMenuCanvas.AddComponent<CanvasScaler>();
         pauseMenuCanvas.AddComponent<GraphicRaycaster>();
         canvas.renderMode = RenderMode.ScreenSpaceOverlay;
-
+        DontDestroyOnLoad(canvas);
         // 초기 상태: 비활성화
         pauseMenuCanvas.SetActive(false);
 
@@ -100,6 +100,9 @@ public class GameManager : MonoBehaviour
     }
     void BackToTitle()
     {
+        isPaused = !isPaused;
+        Time.timeScale = 1f; // 게임 재개
+        pauseMenuCanvas.SetActive(false); // 메뉴 비활성화
         SceneManager.LoadScene("Title");
     }
     // 게임 종료
