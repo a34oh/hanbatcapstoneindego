@@ -12,7 +12,7 @@ public class TitleScreenManager : MonoBehaviour
     // Developer Tools 버튼 클릭 시 호출
     public void LoadDeveloperToolsScene()
     {
-        SceneManager.LoadScene("Test 1"); // "Test 1"으로 변경
+        SceneManager.LoadScene("Test 3"); // "Test 1"으로 변경
     }
 
     // Exit 버튼 클릭 시 호출
