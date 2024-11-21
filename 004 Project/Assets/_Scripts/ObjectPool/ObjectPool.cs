@@ -28,6 +28,7 @@ public class ObjectPool : MonoBehaviour
     {        // 싱글톤 패턴 적용
         if(SceneManager.GetActiveScene().name == "Test 2")
         {
+            Debug.Log(SceneManager.GetActiveScene().name);
             InitializePool();
         }
     }
@@ -85,7 +86,8 @@ public class ObjectPool : MonoBehaviour
         }
         monster.Clear();
         objectPool.Clear();
-        InitializePool();
+        if(SceneManager.GetActiveScene().name == "Test 2")
+            InitializePool();
     }
 }
 

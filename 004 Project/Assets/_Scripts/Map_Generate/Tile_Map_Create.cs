@@ -7,6 +7,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Tilemaps;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Tile_Map_Create : MonoBehaviour
 {
@@ -217,6 +218,8 @@ public class Tile_Map_Create : MonoBehaviour
     }
     private void ChangeRoom(Map_Node parent, int x, int y, int width, int height, string playStyle = null)
     {
+        bool test = false;
+        if(SceneManager.GetActiveScene().name == "Test 3") test = true;
         if(map_count %4 ==0) temp_spawn = spawn_count;
         int floor_count = height / 5;
         
@@ -253,8 +256,9 @@ public class Tile_Map_Create : MonoBehaviour
                         newPortal = Instantiate(portal);
                         newPortal.transform.position = new Vector3(80 * ((position_count - 48) / 4) + i + 4, -240 - altitude3+2, 1);
                     }
-                    if(!monster_spawn)
+                    if(!monster_spawn && !test)
                     {
+                        Debug.Log(test);
                         spawn_count++;
                         monster_spawn =true;
                         Vector3 pos = new Vector3(80 * ((position_count % 16) / 4) + i + (rand/2) , 2-altitude3- (position_count / 16) * 80, 1);
