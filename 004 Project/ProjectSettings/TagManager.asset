@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - ParticleContainer
   - FieldItem
+  - Portal
   layers:
   - Default
   - TransparentFX
