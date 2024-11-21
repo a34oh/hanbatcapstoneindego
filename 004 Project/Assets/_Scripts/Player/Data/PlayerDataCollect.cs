@@ -26,7 +26,7 @@ public class PlayerDataCollect
         if (actionData.ContainsKey(actionType))
         {
             actionData[actionType]++;
-            GameManager.PlayerManager.DataAnalyze.AnalyzePlayerData(actionData);
+            PlayerDataAnalyze.Instance.AnalyzePlayerData(actionData);
            Debug.Log($"{actionType} count : {actionData[actionType]}");
         }
     }

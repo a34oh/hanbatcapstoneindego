@@ -6,7 +6,7 @@ public class PlayerManager : MonoBehaviour
     private SkillSetup skillSetup;
 
     public PlayerDataCollect PlayerDataCollect { get; private set; }
-    public PlayerDataAnalyze DataAnalyze { get; private set; }
+    
 
     public void Initialize(Vector3? position = null)
     {
@@ -22,12 +22,12 @@ public class PlayerManager : MonoBehaviour
         {
             if (position.HasValue)
             {
-                // ÁöÁ¤µÈ À§Ä¡¿¡¼­ Player »ý¼º
+                // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ï¿½ï¿½ Player ï¿½ï¿½ï¿½ï¿½
                 Player = GameManager.Resource.Instantiate("Player", position.Value);
             }
             else
             {
-                // ÇÁ¸®ÆÕ¿¡ ÁöÁ¤µÈ ±âº» À§Ä¡¿¡¼­ Player »ý¼º
+                // ï¿½ï¿½ï¿½ï¿½ï¿½Õ¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½âº» ï¿½ï¿½Ä¡ï¿½ï¿½ï¿½ï¿½ Player ï¿½ï¿½ï¿½ï¿½
                 Player = GameManager.Resource.Instantiate("Player");
             }
         }
@@ -37,7 +37,7 @@ public class PlayerManager : MonoBehaviour
         }
 
         PlayerDataCollect = new PlayerDataCollect();
-        DataAnalyze = new PlayerDataAnalyze();
+        
         Camera.main.gameObject.GetComponent<MainCameraController>().SetPlayer(Player);
     }
 

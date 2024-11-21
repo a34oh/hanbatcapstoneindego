@@ -60,10 +60,10 @@ public class Enemy2 : Entity
     protected override void Update()
     {
         base.Update();
-        if (GameManager.PlayerManager.DataAnalyze.changePlayerType)
+        if (PlayerDataAnalyze.Instance.changePlayerType)
         {
             StartCoroutine(GetComponentInChildren<EnemyStats>().AdjustStatsBasedOnPlayerType());
-            GameManager.PlayerManager.DataAnalyze.changePlayerType = false;
+            PlayerDataAnalyze.Instance.changePlayerType = false;
         }
     }
     protected override void OnDisable()

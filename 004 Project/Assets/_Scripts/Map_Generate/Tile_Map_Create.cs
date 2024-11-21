@@ -186,7 +186,7 @@ public class Tile_Map_Create : MonoBehaviour
         tree.width = width;
         tree.height = height;
         FillRoom(parent, tree.x, tree.y, tree.width, tree.height);        
-        ChangeRoom(parent, tree.x, tree.y, tree.width, tree.height, GameManager.PlayerManager.DataAnalyze.playerType);
+        ChangeRoom(parent, tree.x, tree.y, tree.width, tree.height, PlayerDataAnalyze.Instance.playerType);
         
     }
     private void FillRoom(Map_Node parent, int x, int y, int width, int height)
