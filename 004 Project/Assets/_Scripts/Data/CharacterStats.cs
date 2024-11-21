@@ -74,9 +74,13 @@ public abstract class CharacterStats<T> : MonoBehaviour, ICharacterStats where T
 
     protected abstract void SetStat();
 
-    protected virtual void SetStatsData(T stats)
+    protected virtual void SetStatsData(T stats, bool isSave)
     {
-        curHp = stats.curHp;
+        if (!isSave)
+        {
+            curHp = stats.curHp;
+            PlayerStats.savePlayerData = false;
+        }
         maxHp = stats.maxHp;
         attackDamage = stats.attackDamage + addAttackDamage;
         attackSpeed = stats.attackSpeed;

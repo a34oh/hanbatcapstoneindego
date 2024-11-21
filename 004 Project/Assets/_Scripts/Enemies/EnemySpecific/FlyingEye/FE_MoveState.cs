@@ -37,6 +37,13 @@ public class FE_MoveState : MoveState
         }
         else if (enemy.lastKnownPlayerPosition != null)
         {
+            if ((isDetectingWall || !isDetectingLedge))
+            {
+                enemy.lastKnownPlayerPosition = null;
+                enemy.ClearLastKnownPlayerPosition();
+                stateMachine.ChangeState(enemy.lookForPlayerState);
+                return;
+            }
             float direction = Mathf.Sign(enemy.lastKnownPlayerPosition.Value.x - enemy.transform.position.x);
             Movement?.SetVelocityX(stateData.movementSpeed * direction * enemyStats.MoveSpeed);
 

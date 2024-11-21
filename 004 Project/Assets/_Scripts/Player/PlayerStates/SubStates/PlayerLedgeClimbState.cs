@@ -43,6 +43,7 @@ public class PlayerLedgeClimbState : PlayerState {
 
 	public override void Enter() {
 		base.Enter();
+		GameManager.SharedCombatDataManager.IsPlayerNotKnockback = true;
 
 		Movement?.SetVelocityZero();
 		player.transform.position = detectedPos;
@@ -62,6 +63,7 @@ public class PlayerLedgeClimbState : PlayerState {
 
 	public override void Exit() {
 		base.Exit();
+		GameManager.SharedCombatDataManager.IsPlayerNotKnockback = false;
 
 		isHanging = false;
 

@@ -23,12 +23,14 @@ public class PlayerWallGrabState : PlayerTouchingWallState {
 	public override void Enter() {
 		base.Enter();
 		holdPosition = player.transform.position;
-
+		GameManager.SharedCombatDataManager.IsPlayerNotKnockback = true;
 		HoldPosition();
 	}
 
 	public override void Exit() {
 		base.Exit();
+		GameManager.SharedCombatDataManager.IsPlayerNotKnockback = false;
+
 	}
 
 	public override void LogicUpdate() {

@@ -107,9 +107,9 @@ public class EnemyStats : CharacterStats<EnemyStatsData>
             Debug.LogError("Failed to load monster stats for id: " + id);
         }
     }
-    protected override void SetStatsData(EnemyStatsData stats)
+    protected override void SetStatsData(EnemyStatsData stats, bool isSave = false)
     {
-        base.SetStatsData(stats);
+        base.SetStatsData(stats, isSave);
         Exp = stats.Exp;
     }
 
