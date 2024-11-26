@@ -726,6 +726,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   entityData: {fileID: 11400000, guid: bdddb0c10c431a84ca1fdf076481eaab, type: 2}
+  playerTransform: {fileID: 0}
   wallCheck: {fileID: 8162707705408295876}
   ledgeCheck: {fileID: 3512082314616488223}
   playerCheck: {fileID: 4909135956578073449}

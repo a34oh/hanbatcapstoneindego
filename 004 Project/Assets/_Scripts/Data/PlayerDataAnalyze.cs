@@ -74,6 +74,8 @@ public class PlayerDataAnalyze : MonoBehaviour
         {
             changePlayerType = true;
             currentPlayerType = newPlayerType;
+            EnemyChangeStats.SetBaseStats(currentPlayerType);
+
         }
         else
         {

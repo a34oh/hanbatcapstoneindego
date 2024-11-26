@@ -27,6 +27,7 @@ public class PlayerDataCollect
         {
             actionData[actionType]++;
             PlayerDataAnalyze.Instance.AnalyzePlayerData(actionData);
+
            Debug.Log($"{actionType} count : {actionData[actionType]}");
         }
     }

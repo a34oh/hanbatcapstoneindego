@@ -6,6 +6,7 @@ using System.Diagnostics.Tracing;
 using UnityEngine.Tilemaps;
 using System.Collections.Generic;
 using System.Collections;
+using UnityEngine.EventSystems;
 
 public class Map_generate : MonoBehaviour
 {
@@ -43,6 +44,7 @@ public class Map_generate : MonoBehaviour
             sc.isTrigger = false;
         }
         GameManager.PlayerManager.Player.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(null);
         Start();        
     }
     IEnumerator map_generate()

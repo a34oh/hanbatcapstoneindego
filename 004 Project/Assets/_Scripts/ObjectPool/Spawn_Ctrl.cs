@@ -8,7 +8,7 @@ public class Spawn_Ctrl : MonoBehaviour
     public bool isTrigger;
 
 
-    void OnTriggerStay2D(Collider2D other)
+    void OnTriggerEnter2D(Collider2D other)
     {
         if(other.CompareTag("Player") && isTrigger == false)
         {
@@ -21,6 +21,7 @@ public class Spawn_Ctrl : MonoBehaviour
                 
                 if (obj.activeSelf)
                 {
+                  //  obj.GetComponent<BoxCollider2D>().isTrigger = true;
                     // 몬스터의 속성 설정
                     EnemyStats enemyStats = obj.GetComponentInChildren<EnemyStats>();
 
