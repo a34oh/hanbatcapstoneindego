@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class teleport : MonoBehaviour
 {
@@ -21,6 +22,7 @@ public class teleport : MonoBehaviour
             Debug.Log(1);
         }
         player.transform.position = portal.transform.position;
+        EventSystem.current.SetSelectedGameObject(null);
     }
-    
+
 }

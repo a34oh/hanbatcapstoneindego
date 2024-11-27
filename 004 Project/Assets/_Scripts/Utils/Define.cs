@@ -10,6 +10,7 @@ public class Define
         Login,
         Lobby,
         Game,
+        Test,
         Boss,
     }
 }

@@ -401,6 +401,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   entityData: {fileID: 11400000, guid: ec8396119801cd241a357b23ec38c9fa, type: 2}
+  playerTransform: {fileID: 0}
   wallCheck: {fileID: 4319591300673278006}
   ledgeCheck: {fileID: 7737113821076339143}
   playerCheck: {fileID: 5538782912243054567}
@@ -1100,7 +1101,7 @@ Transform:
   m_GameObject: {fileID: 9195316587247820311}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.73, y: 0.16, z: 0}
+  m_LocalPosition: {x: 0.73, y: -0.07, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
